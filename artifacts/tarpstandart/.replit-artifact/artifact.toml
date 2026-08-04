@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ТарпСтандарт"
+description = "Премиальный сайт для ТарпСтандарт — компании-импортёра технического текстиля. Полностью переработанный дизайн уровня Apple/Stripe с каталогом тканей ПВХ, областями применения, разделом о компании, контактами складов и формой запроса."
+version = "1.0.0"
+id = "artifacts/tarpstandart"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19177
+
+[services.development]
+run = "pnpm --filter @workspace/tarpstandart run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/tarpstandart", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/tarpstandart/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19177"
+BASE_PATH = "/"
