@@ -37,9 +37,8 @@ export function CTABanner() {
             </Button>
             <Button 
               size="lg" 
-              variant="outline"
               onClick={() => scrollTo("catalog")}
-              className="border-white/30 text-white hover:bg-white/10 hover:text-white text-lg h-14 px-10 font-bold"
+              className="bg-white text-primary hover:bg-white/90 text-lg h-14 px-10 font-bold"
             >
               Смотреть каталог
             </Button>

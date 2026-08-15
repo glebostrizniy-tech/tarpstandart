@@ -1,17 +1,28 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import logoPath from "@assets/tarpstandart-logo.png";
 import { Mail, Phone } from "lucide-react";
+import { CATALOG_PDF_URL } from "@/data/site";
+import { EQUIPMENT_PATH } from "@/data/equipment";
+import { LEGAL_DOCUMENTS, legalPath } from "@/data/legal";
+import { MANUFACTURERS, manufacturerPath } from "@/data/manufacturers";
 
 export function Footer() {
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const [location, setLocation] = useLocation();
+
+  const goToSection = (id: string) => {
+    if (location !== "/") {
+      setLocation(`/#${id}`);
+      window.setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return;
     }
+
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-background border-t border-white/5 pt-16 pb-8">
+    <footer className="bg-background border-t border-border pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-1">
@@ -22,10 +33,10 @@ export function Footer() {
               Ведущий поставщик технического текстиля и оборудования для производственных предприятий в России и Беларуси.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-white/5 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+              <a href="https://vk.com/tarpstandart" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                 <span className="font-bold">VK</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-white/5 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+              <a href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                 <span className="font-bold text-xs">TG</span>
               </a>
             </div>
@@ -34,20 +45,44 @@ export function Footer() {
           <div>
             <h4 className="text-foreground font-bold mb-6 uppercase tracking-wider text-sm">Навигация</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Каталог материалов</button></li>
-              <li><button onClick={() => scrollTo("applications")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Сферы применения</button></li>
-              <li><button onClick={() => scrollTo("about")} className="text-muted-foreground hover:text-primary transition-colors text-sm">О компании</button></li>
-              <li><button onClick={() => scrollTo("contacts")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Контакты</button></li>
+              <li><button onClick={() => goToSection("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Каталог материалов</button></li>
+              <li><button onClick={() => goToSection("applications")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Сферы применения</button></li>
+              <li><button onClick={() => goToSection("about")} className="text-muted-foreground hover:text-primary transition-colors text-sm">О компании</button></li>
+              <li><button onClick={() => goToSection("contacts")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Контакты</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-foreground font-bold mb-6 uppercase tracking-wider text-sm">Каталог</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Ткани ПВХ</button></li>
-              <li><button onClick={() => scrollTo("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Плёнки и сетки</button></li>
-              <li><button onClick={() => scrollTo("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">ТПУ и ТПО материалы</button></li>
-              <li><button onClick={() => scrollTo("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Оборудование HSD</button></li>
+              <li><button onClick={() => goToSection("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Ткани ПВХ</button></li>
+              <li><button onClick={() => goToSection("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">Плёнки и сетки</button></li>
+              <li><button onClick={() => goToSection("catalog")} className="text-muted-foreground hover:text-primary transition-colors text-sm">ТПУ и ТПО материалы</button></li>
+              <li>
+                <Link href={EQUIPMENT_PATH} className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Оборудование
+                </Link>
+              </li>
+              {MANUFACTURERS.map((manufacturer) => (
+                <li key={manufacturer.slug}>
+                  <Link
+                    href={manufacturerPath(manufacturer.slug)}
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    {manufacturer.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={CATALOG_PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Каталог PDF
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -82,11 +117,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} ООО «ТарпСтандарт». Все права защищены.</p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-foreground transition-colors">Политика конфиденциальности</a>
-            <a href="#" className="hover:text-foreground transition-colors">Сбор данных</a>
+            {LEGAL_DOCUMENTS.map((doc) => (
+              <Link
+                key={doc.slug}
+                href={legalPath(doc.slug)}
+                className="hover:text-foreground transition-colors"
+              >
+                {doc.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

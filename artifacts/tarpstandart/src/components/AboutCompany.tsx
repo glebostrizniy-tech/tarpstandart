@@ -52,19 +52,19 @@ export function AboutCompany() {
             className="grid grid-cols-2 gap-4"
           >
             <div className="space-y-4">
-              <div className="bg-card border border-white/5 p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
+              <div className="bg-card border border-border p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-5xl font-display font-bold text-primary mb-2">20+</div>
                 <div className="text-muted-foreground font-medium uppercase tracking-wider text-sm">Лет опыта</div>
               </div>
-              <div className="bg-card border border-white/5 p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
+              <div className="bg-card border border-border p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-5xl font-display font-bold text-primary mb-2">4</div>
                 <div className="text-muted-foreground font-medium uppercase tracking-wider text-sm">Склада РФ и РБ</div>
               </div>
             </div>
             <div className="space-y-4 pt-12">
-              <div className="bg-card border border-white/5 p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
+              <div className="bg-card border border-border p-8 rounded-3xl h-48 flex flex-col justify-end relative overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-5xl font-display font-bold text-primary mb-2">50+</div>
                 <div className="text-muted-foreground font-medium uppercase tracking-wider text-sm">Видов тканей</div>

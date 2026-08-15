@@ -40,7 +40,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-foreground"
             >
-              Технический <span className="text-primary italic font-light pr-2">текстиль</span><br />
+              Технический <span className="text-primary">текстиль</span><br />
               для вашего производства
             </motion.h1>
             
@@ -71,7 +71,7 @@ export function Hero() {
                 size="lg" 
                 variant="outline"
                 onClick={() => scrollTo("contacts")}
-                className="text-base font-semibold h-14 px-8 border-white/20 hover:bg-white/5"
+                className="text-base font-semibold h-14 px-8 border-border hover:bg-muted"
               >
                 Запросить предложение
               </Button>
@@ -84,9 +84,9 @@ export function Hero() {
               className="mt-16 flex items-center gap-8 text-sm font-medium text-muted-foreground uppercase tracking-widest"
             >
               <div><span className="text-primary text-xl font-bold block mb-1">20+</span> Лет опыта</div>
-              <div className="w-px h-8 bg-white/10" />
+              <div className="w-px h-8 bg-border" />
               <div><span className="text-primary text-xl font-bold block mb-1">4</span> Склада РФ и РБ</div>
-              <div className="w-px h-8 bg-white/10" />
+              <div className="w-px h-8 bg-border" />
               <div><span className="text-primary text-xl font-bold block mb-1">50+</span> Видов материалов</div>
             </motion.div>
           </div>
@@ -98,7 +98,7 @@ export function Hero() {
             className="relative lg:h-[700px] flex items-center justify-center hidden lg:flex"
           >
             {/* The generated image goes here */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/20">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden border border-border shadow-2xl shadow-primary/10">
               <img 
                 src={heroImage} 
                 alt="Технический текстиль ПВХ" 

@@ -54,7 +54,7 @@ export function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="border border-white/10 rounded-2xl bg-card/50 overflow-hidden"
+              className="border border-border rounded-2xl bg-card/50 overflow-hidden"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
@@ -73,7 +73,7 @@ export function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-5 text-muted-foreground leading-relaxed border-t border-white/5 pt-4">
+                    <div className="px-6 pb-5 text-muted-foreground leading-relaxed border-t border-border pt-4">
                       {faq.a}
                     </div>
                   </motion.div>

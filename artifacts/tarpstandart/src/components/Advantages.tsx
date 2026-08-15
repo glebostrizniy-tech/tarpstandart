@@ -36,9 +36,9 @@ export function Advantages() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="p-8 rounded-2xl bg-card border border-white/5 hover:border-primary/30 transition-colors group"
+              className="p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group"
             >
-              <div className="mb-6 p-4 rounded-xl bg-background inline-flex border border-white/5 group-hover:bg-primary/5 transition-colors">
+              <div className="mb-6 p-4 rounded-xl bg-background inline-flex border border-border group-hover:bg-primary/5 transition-colors">
                 {adv.icon}
               </div>
               <h3 className="text-xl font-bold mb-3 text-foreground">{adv.title}</h3>

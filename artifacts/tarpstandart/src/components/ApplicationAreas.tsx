@@ -1,38 +1,65 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Truck, Tent, Wind, Waves, Factory, Recycle, Hammer, Armchair, Shield } from "lucide-react";
+import type { ReactNode } from "react";
+import truckTarpImage from "@assets/generated_images/construction-tarp.jpg";
+import inflatableStructureImage from "@assets/directions/usage-inflatable.png";
+import industrialTentImage from "@assets/generated_images/industrial-tent.jpg";
+import inflatableBoatImage from "@assets/generated_images/inflatable-watercraft.jpg";
+import shipyardImage from "@assets/directions/usage-shipyard.png";
+import dropStitchFurnitureImage from "@assets/directions/drop-stitch-chair.png";
+
+type Category = {
+  id: string;
+  name: string;
+  icon: ReactNode;
+  items: string[];
+  /** Фото применения из нашей базы, если для категории оно есть. */
+  img?: string;
+  imgAlt?: string;
+};
 
 export function ApplicationAreas() {
-  const categories = [
+  const categories: Category[] = [
     {
       id: "transport",
       name: "Транспорт",
       icon: <Truck className="w-5 h-5" />,
-      items: ["Автотенты", "Тенты на фуры", "Чехлы на катера и яхты"]
+      items: ["Автотенты", "Тенты на фуры", "Чехлы на катера и яхты"],
+      img: truckTarpImage,
+      imgAlt: "Тент из технической ткани на грузовой платформе"
     },
     {
       id: "inflatable",
       name: "Надувные конструкции",
       icon: <Wind className="w-5 h-5" />,
-      items: ["Тюбинги (ватрушки)", "Батуты", "Пневмоангары", "Пневмоструктуры", "Зорбы", "Аэролоки"]
+      items: ["Тюбинги (ватрушки)", "Батуты", "Пневмоангары", "Пневмоструктуры", "Зорбы", "Аэролоки"],
+      img: inflatableStructureImage,
+      imgAlt: "Крупная надувная конструкция из ПВХ-ткани"
     },
     {
       id: "tents",
       name: "Тентовые сооружения",
       icon: <Tent className="w-5 h-5" />,
-      items: ["Ангары", "Коровники", "Лёгкие тентовые конструкции", "Тентовые конструкции больших размеров", "Беседки", "Навесы", "Маркизы", "Перголы"]
+      items: ["Ангары", "Коровники", "Лёгкие тентовые конструкции", "Тентовые конструкции больших размеров", "Беседки", "Навесы", "Маркизы", "Перголы"],
+      img: industrialTentImage,
+      imgAlt: "Тентовый ангар из ПВХ-ткани на промышленной площадке"
     },
     {
       id: "sport",
       name: "Спорт и отдых",
       icon: <Waves className="w-5 h-5" />,
-      items: ["Лодки ПВХ", "SUP", "Гермосумки и Гермобаулы", "Спортивные принадлежности", "Аттракционы", "Палатки", "Детские площадки"]
+      items: ["Лодки ПВХ", "SUP", "Гермосумки и Гермобаулы", "Спортивные принадлежности", "Аттракционы", "Палатки", "Детские площадки"],
+      img: inflatableBoatImage,
+      imgAlt: "Надувная лодка из газодержащей ПВХ-ткани на воде"
     },
     {
       id: "industry",
       name: "Промышленность",
       icon: <Factory className="w-5 h-5" />,
-      items: ["Вентиляционные рукава", "Технологические ленты", "Чехлы на оборудование", "Упаковка", "Производство НДН", "Производство СВП"]
+      items: ["Вентиляционные рукава", "Технологические ленты", "Чехлы на оборудование", "Упаковка", "Производство НДН", "Производство СВП"],
+      img: shipyardImage,
+      imgAlt: "Промышленные укрытия из ПВХ-ткани на судоремонтном производстве"
     },
     {
       id: "ecology",
@@ -50,7 +77,9 @@ export function ApplicationAreas() {
       id: "furniture",
       name: "Мебель",
       icon: <Armchair className="w-5 h-5" />,
-      items: ["Уличная мебель", "Мебель для HoReCa", "Массажные кушетки", "Беседки"]
+      items: ["Уличная мебель", "Мебель для HoReCa", "Массажные кушетки", "Беседки"],
+      img: dropStitchFurnitureImage,
+      imgAlt: "Надувное кресло из материала drop stitch"
     },
     {
       id: "other",
@@ -91,7 +120,7 @@ export function ApplicationAreas() {
                 className={`flex items-center gap-4 px-6 py-4 rounded-xl transition-all text-left font-medium ${
                   activeTab === cat.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-[1.02]"
-                    : "bg-card/50 text-foreground/70 hover:bg-card hover:text-foreground border border-transparent hover:border-white/5"
+                    : "bg-card/50 text-foreground/70 hover:bg-card hover:text-foreground border border-transparent hover:border-border"
                 }`}
               >
                 {cat.icon}
@@ -107,7 +136,7 @@ export function ApplicationAreas() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className="bg-card border border-white/5 rounded-3xl p-8 md:p-12 h-full"
+              className="bg-card border border-border rounded-3xl p-8 md:p-12 h-full"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="p-4 bg-primary/10 text-primary rounded-2xl">
@@ -115,10 +144,21 @@ export function ApplicationAreas() {
                 </div>
                 <h3 className="text-3xl font-bold">{activeCategory?.name}</h3>
               </div>
-              
+
+              {activeCategory?.img && (
+                <div className="mb-8 rounded-2xl overflow-hidden border border-border">
+                  <img
+                    src={activeCategory.img}
+                    alt={activeCategory.imgAlt}
+                    className="w-full h-56 md:h-72 object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {activeCategory?.items.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-background border border-white/5">
+                  <div key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-background border border-border">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
                     <span className="text-foreground/90">{item}</span>
                   </div>

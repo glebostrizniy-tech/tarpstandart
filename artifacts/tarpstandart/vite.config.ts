@@ -4,6 +4,12 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
+import { seoPlugin } from './seo-plugin';
+
+const siteUrl = (process.env.VITE_SITE_URL ?? 'https://tarpstandart.ru').replace(
+  /\/+$/,
+  '',
+);
 
 const rawPort = process.env.PORT;
 
@@ -33,6 +39,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
+    seoPlugin(siteUrl),
     ...(process.env.NODE_ENV !== 'production' &&
     process.env.REPL_ID !== undefined
       ? [

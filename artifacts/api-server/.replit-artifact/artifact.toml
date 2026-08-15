@@ -27,6 +27,8 @@ args = ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
 [services.production.run.env]
 PORT = "8080"
 NODE_ENV = "production"
+CONTACT_RECIPIENT_EMAIL = "sale@tarpstandart.ru"
+CONTACT_RECIPIENT_EMAIL = "sale@tarpstandart.ru"
 
 [services.production.health.startup]
 path = "/api/healthz"
