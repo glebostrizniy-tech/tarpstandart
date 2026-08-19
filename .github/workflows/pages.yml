@@ -22,14 +22,16 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          # Локально в проекте pnpm 11 — на 9/10 lockfile часто падает сразу.
+          version: 11
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
 
-      - run: pnpm install
+      - name: Install frontend dependencies
+        # Ставим только сайт и его зависимости, без api-server.
+        run: pnpm install --frozen-lockfile --filter @workspace/tarpstandart...
 
       - name: Build frontend
         working-directory: artifacts/tarpstandart
@@ -39,9 +41,15 @@ jobs:
           # Когда повесишь tarpstandart.ru в корень Pages — смени на "/".
           BASE_PATH: "/tarpstandart/"
           VITE_SITE_URL: "https://glebostrizniy-tech.github.io/tarpstandart"
-          # После деплоя API на Render: Settings → Variables → VITE_API_URL
           VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: pnpm run build
+
+      - name: Verify build output
+        run: |
+          test -f artifacts/tarpstandart/dist/public/index.html
+          ls -la artifacts/tarpstandart/dist/public | head
+
+      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
