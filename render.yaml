@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: tarpstandart-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install --frozen-lockfile --filter @workspace/api-server... && pnpm --filter @workspace/api-server run build
+    startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CONTACT_RECIPIENT_EMAIL
+        value: sale@tarpstandart.ru
+      - key: SMTP_HOST
+        value: smtp.yandex.ru
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_FROM
+        value: sale@tarpstandart.ru
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://glebostrizniy-tech.github.io,https://tarpstandart.ru,https://www.tarpstandart.ru

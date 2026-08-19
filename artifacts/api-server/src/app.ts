@@ -25,7 +25,30 @@ app.use(
     },
   }),
 );
-app.use(cors());
+
+const extraOrigins = (process.env.CORS_ORIGINS ?? "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set([
+  "https://glebostrizniy-tech.github.io",
+  "https://tarpstandart.ru",
+  "https://www.tarpstandart.ru",
+  ...extraOrigins,
+]);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin)) {
+        callback(null, true);
+        return;
+      }
+      callback(new Error(`Origin not allowed: ${origin}`));
+    },
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
