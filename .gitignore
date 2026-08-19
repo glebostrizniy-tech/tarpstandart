@@ -47,3 +47,13 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# local junk / package manager cache (never publish)
+.pnpm-store/
+11.19.0
+workspace@0.0.0
+
+# env & secrets
+.env
+.env.*
+!.env.example
