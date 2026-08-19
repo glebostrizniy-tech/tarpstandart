@@ -35,10 +35,11 @@ jobs:
         working-directory: artifacts/tarpstandart
         env:
           PORT: "5173"
-          BASE_PATH: "/"
-          VITE_SITE_URL: "https://tarpstandart.ru"
-          # После деплоя API на Render поменяй на свой URL, например:
-          # https://api.tarpstandart.ru
+          # Пока сайт на github.io/tarpstandart — нужен подпуть.
+          # Когда повесишь tarpstandart.ru в корень Pages — смени на "/".
+          BASE_PATH: "/tarpstandart/"
+          VITE_SITE_URL: "https://glebostrizniy-tech.github.io/tarpstandart"
+          # После деплоя API на Render: Settings → Variables → VITE_API_URL
           VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: pnpm run build
 
