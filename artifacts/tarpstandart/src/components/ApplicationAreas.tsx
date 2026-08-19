@@ -2,10 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Truck, Tent, Wind, Waves, Factory, Recycle, Hammer, Armchair, Shield } from "lucide-react";
 import type { ReactNode } from "react";
-import truckTarpImage from "@assets/generated_images/construction-tarp.jpg";
 import inflatableStructureImage from "@assets/directions/usage-inflatable.png";
 import industrialTentImage from "@assets/generated_images/industrial-tent.jpg";
-import inflatableBoatImage from "@assets/generated_images/inflatable-watercraft.jpg";
 import shipyardImage from "@assets/directions/usage-shipyard.png";
 import dropStitchFurnitureImage from "@assets/directions/drop-stitch-chair.png";
 
@@ -26,8 +24,6 @@ export function ApplicationAreas() {
       name: "Транспорт",
       icon: <Truck className="w-5 h-5" />,
       items: ["Автотенты", "Тенты на фуры", "Чехлы на катера и яхты"],
-      img: truckTarpImage,
-      imgAlt: "Тент из технической ткани на грузовой платформе"
     },
     {
       id: "inflatable",
@@ -50,8 +46,6 @@ export function ApplicationAreas() {
       name: "Спорт и отдых",
       icon: <Waves className="w-5 h-5" />,
       items: ["Лодки ПВХ", "SUP", "Гермосумки и Гермобаулы", "Спортивные принадлежности", "Аттракционы", "Палатки", "Детские площадки"],
-      img: inflatableBoatImage,
-      imgAlt: "Надувная лодка из газодержащей ПВХ-ткани на воде"
     },
     {
       id: "industry",
