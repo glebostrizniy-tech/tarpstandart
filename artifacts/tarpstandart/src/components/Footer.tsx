@@ -36,8 +36,8 @@ export function Footer() {
               <a href="https://vk.com/tarpstandart" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                 <span className="font-bold">VK</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
-                <span className="font-bold text-xs">TG</span>
+              <a href="https://max.ru/tarpstandart" target="_blank" rel="noopener noreferrer" aria-label="MAX" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                <span className="font-bold text-xs">MAX</span>
               </a>
             </div>
           </div>

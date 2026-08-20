@@ -44,7 +44,7 @@ export function organizationJsonLd(): Record<string, unknown> {
         availableLanguage: ["ru"],
       },
     ],
-    sameAs: ["https://vk.com/tarpstandart"],
+    sameAs: ["https://vk.com/tarpstandart", "https://max.ru/tarpstandart"],
   };
 }
 
