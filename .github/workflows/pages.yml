@@ -21,9 +21,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          # Локально в проекте pnpm 11 — на 9/10 lockfile часто падает сразу.
-          version: 11
 
       - uses: actions/setup-node@v4
         with:
