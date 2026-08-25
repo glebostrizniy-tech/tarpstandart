@@ -19,6 +19,10 @@ function getRequiredEnv(name: string): string {
   return value;
 }
 
+function recipientEmail(): string {
+  return process.env.CONTACT_RECIPIENT_EMAIL?.trim() || CORPORATE_EMAIL;
+}
+
 function createTransporter(): Transporter {
   const host = getRequiredEnv("SMTP_HOST");
   const port = Number(process.env.SMTP_PORT ?? "587");
@@ -34,6 +38,9 @@ function createTransporter(): Transporter {
     port,
     secure: port === 465,
     auth: { user, pass },
+    connectionTimeout: 8_000,
+    greetingTimeout: 8_000,
+    socketTimeout: 12_000,
   });
 }
 
@@ -73,18 +80,63 @@ function escapeHtml(value: string): string {
     .replaceAll("'", "&#39;");
 }
 
-export async function sendContactFormEmail(data: ContactFormPayload): Promise<void> {
+/**
+ * HTTPS API (порт 443). Нужен на бесплатном Render: там закрыты SMTP 25/465/587.
+ * https://render.com/docs/free
+ */
+async function sendViaResend(data: ContactFormPayload): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is not set");
+  }
+
+  const { subject, text, html } = buildEmailContent(data);
+  const from =
+    process.env.RESEND_FROM?.trim() || "ТарпСтандарт <beth.t@example.com>";
+  const replyTo = data.contact.includes("@") ? data.contact : undefined;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [recipientEmail()],
+      subject,
+      text,
+      html,
+      ...(replyTo ? { reply_to: replyTo } : {}),
+    }),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Resend API ${response.status}: ${body.slice(0, 500)}`);
+  }
+}
+
+async function sendViaSmtp(data: ContactFormPayload): Promise<void> {
   const transporter = createTransporter();
-  const recipient = process.env.CONTACT_RECIPIENT_EMAIL?.trim() || CORPORATE_EMAIL;
   const from = process.env.SMTP_FROM?.trim() || getRequiredEnv("SMTP_USER");
   const { subject, text, html } = buildEmailContent(data);
 
   await transporter.sendMail({
     from,
-    to: recipient,
+    to: recipientEmail(),
     replyTo: data.contact.includes("@") ? data.contact : undefined,
     subject,
     text,
     html,
   });
+}
+
+export async function sendContactFormEmail(data: ContactFormPayload): Promise<void> {
+  if (process.env.RESEND_API_KEY?.trim()) {
+    await sendViaResend(data);
+    return;
+  }
+
+  await sendViaSmtp(data);
 }

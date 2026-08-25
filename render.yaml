@@ -24,3 +24,7 @@ services:
         sync: false
       - key: CORS_ORIGINS
         value: https://glebostrizniy-tech.github.io,https://tarpstandart.ru,https://www.tarpstandart.ru
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        value: ТарпСтандарт <beth.t@example.com>
