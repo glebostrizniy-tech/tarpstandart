@@ -5,10 +5,9 @@ const configuredSiteUrl =
     ? import.meta.env.VITE_SITE_URL
     : undefined;
 
-export const SITE_URL = (configuredSiteUrl ?? "https://tarpstandart.ru").replace(
-  /\/+$/,
-  "",
-);
+export const SITE_URL = (
+  configuredSiteUrl ?? "https://glebostrizniy-tech.github.io/tarpstandart"
+).replace(/\/+$/, "");
 
 export const SITE_NAME = "ТарпСтандарт";
 export const SITE_LEGAL_NAME = "ООО «ТарпСтандарт»";

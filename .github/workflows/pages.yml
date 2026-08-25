@@ -44,6 +44,7 @@ jobs:
       - name: Verify build output
         run: |
           test -f artifacts/tarpstandart/dist/public/index.html
+          rm -f artifacts/tarpstandart/dist/public/CNAME
           ls -la artifacts/tarpstandart/dist/public | head
 
       - uses: actions/configure-pages@v5

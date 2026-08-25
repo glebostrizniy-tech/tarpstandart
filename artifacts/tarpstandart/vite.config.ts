@@ -6,10 +6,9 @@ import { defineConfig } from 'vite';
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 import { seoPlugin } from './seo-plugin';
 
-const siteUrl = (process.env.VITE_SITE_URL ?? 'https://tarpstandart.ru').replace(
-  /\/+$/,
-  '',
-);
+const siteUrl = (
+  process.env.VITE_SITE_URL ?? 'https://glebostrizniy-tech.github.io/tarpstandart'
+).replace(/\/+$/, '');
 
 const rawPort = process.env.PORT;
 
