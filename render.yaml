@@ -11,7 +11,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: CONTACT_RECIPIENT_EMAIL
-        value: sale@tarpstandart.ru
+        value: glebostrizniy@bk.ru
       - key: SMTP_HOST
         value: smtp.yandex.ru
       - key: SMTP_PORT
