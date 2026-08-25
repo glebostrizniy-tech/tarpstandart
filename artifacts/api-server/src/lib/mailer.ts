@@ -92,7 +92,7 @@ async function sendViaResend(data: ContactFormPayload): Promise<void> {
 
   const { subject, text, html } = buildEmailContent(data);
   const from =
-    process.env.RESEND_FROM?.trim() || "ТарпСтандарт <beth.t@example.com>";
+    process.env.RESEND_FROM?.trim() || "ТарпСтандарт <onboarding@resend.dev>";
   const replyTo = data.contact.includes("@") ? data.contact : undefined;
 
   const response = await fetch("https://api.resend.com/emails", {
