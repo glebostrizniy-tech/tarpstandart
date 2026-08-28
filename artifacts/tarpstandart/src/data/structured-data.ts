@@ -7,6 +7,7 @@ import {
   SITE_NAME,
   SITE_URL,
   WAREHOUSE_CITIES,
+  WAREHOUSES,
 } from "./site";
 import type { Material } from "./materials";
 import { materialPath } from "./materials";
@@ -34,6 +35,16 @@ export function organizationJsonLd(): Record<string, unknown> {
     areaServed: WAREHOUSE_CITIES.map((city) => ({
       "@type": "City",
       name: city,
+    })),
+    location: WAREHOUSES.map((warehouse) => ({
+      "@type": "Place",
+      name: `Склад ${SITE_NAME} — ${warehouse.city}`,
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: warehouse.country,
+        addressLocality: warehouse.city,
+        streetAddress: warehouse.address,
+      },
     })),
     contactPoint: [
       {

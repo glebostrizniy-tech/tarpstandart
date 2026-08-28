@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import heroImage from "@assets/generated_images/hero-pvc-rolls.jpg";
+import { COMPANY_SLOGAN } from "@/data/site";
 
 export function Hero() {
   const scrollTo = (id: string) => {
@@ -43,11 +44,20 @@ export function Hero() {
               Технический <span className="text-primary">текстиль</span><br />
               для вашего производства
             </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.18, ease: "easeOut" }}
+              className="max-w-xl border-l-2 border-primary pl-5 mb-6 text-base md:text-lg leading-snug text-foreground/85"
+            >
+              {COMPANY_SLOGAN}
+            </motion.p>
             
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl leading-relaxed"
             >
               Поставки ПВХ-тканей и технического текстиля. Россия и Беларусь. Опыт 20 лет прямых контейнерных поставок.
@@ -56,7 +66,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
               className="flex flex-wrap gap-4"
             >
               <Button 
@@ -75,19 +85,6 @@ export function Hero() {
               >
                 Запросить предложение
               </Button>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="mt-16 flex items-center gap-8 text-sm font-medium text-muted-foreground uppercase tracking-widest"
-            >
-              <div><span className="text-primary text-xl font-bold block mb-1">20+</span> Лет опыта</div>
-              <div className="w-px h-8 bg-border" />
-              <div><span className="text-primary text-xl font-bold block mb-1">4</span> Склада РФ и РБ</div>
-              <div className="w-px h-8 bg-border" />
-              <div><span className="text-primary text-xl font-bold block mb-1">50+</span> Видов материалов</div>
             </motion.div>
           </div>
 

@@ -16,6 +16,7 @@ import {
   type CatalogInquiryDetail,
 } from "@/lib/catalog-inquiry";
 import { legalPath } from "@/data/legal";
+import { WAREHOUSES, warehouseMapUrl } from "@/data/site";
 
 const formSchema = z.object({
   name: z.string().min(2, "Введите ваше имя"),
@@ -121,17 +122,31 @@ export function Contacts() {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-3">
                   <div className="p-3 bg-primary/10 rounded-xl text-primary"><MapPin size={24} /></div>
                   Склады
                 </h3>
-                <div className="ml-16 flex flex-wrap gap-3">
-                  {['Москва', 'Санкт-Петербург', 'Минск', 'Уфа'].map(city => (
-                    <span key={city} className="px-4 py-2 bg-background border border-border rounded-lg text-sm font-medium">
-                      {city}
-                    </span>
+                <p className="ml-16 text-sm text-muted-foreground mb-5">
+                  Адреса для водителей. Перед выездом согласуйте отгрузку с отделом продаж.
+                </p>
+                <ul className="ml-16 space-y-6">
+                  {WAREHOUSES.map((warehouse) => (
+                    <li key={warehouse.city}>
+                      <p className="font-semibold text-foreground mb-1">{warehouse.city}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                        {warehouse.address}
+                      </p>
+                      <a
+                        href={warehouseMapUrl(warehouse)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-2 text-sm text-primary hover:underline underline-offset-2"
+                      >
+                        Открыть в Яндекс Картах
+                      </a>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               <div className="pt-8 border-t border-border">
