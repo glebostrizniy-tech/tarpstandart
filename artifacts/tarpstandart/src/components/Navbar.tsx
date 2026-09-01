@@ -24,12 +24,12 @@ export function Navbar() {
     if (location !== "/") {
       setLocation(`/#${id}`);
       window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
       return;
     }
 
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const navLinks = [
@@ -48,7 +48,11 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 relative z-10">
+        <Link
+          href="/"
+          className="flex items-center gap-3 relative z-10"
+          onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "auto" })}
+        >
           <img
             src={logoPath}
             alt="TarpStandard Logo"

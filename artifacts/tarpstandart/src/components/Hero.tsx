@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import heroImage from "@assets/generated_images/hero-pvc-rolls.jpg";
+import heroImage from "@assets/generated_images/hero-color-swatches.png";
 import { COMPANY_SLOGAN } from "@/data/site";
 
 export function Hero() {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center pt-20 overflow-hidden noise-bg">
+    <section className="relative min-h-0 lg:min-h-[100dvh] flex items-start lg:items-center pt-20 pb-16 lg:pb-0 overflow-hidden noise-bg">
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-0" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-background/0 to-transparent z-0 opacity-60" />
@@ -24,7 +24,7 @@ export function Hero() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
-          <div className="max-w-3xl">
+          <div className="max-w-3xl order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,16 +92,16 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative lg:h-[700px] flex items-center justify-center hidden lg:flex"
+            className="relative order-1 lg:order-2 h-52 sm:h-72 lg:h-[700px] flex items-center justify-center"
           >
             {/* The generated image goes here */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden border border-border shadow-2xl shadow-primary/10">
               <img 
                 src={heroImage} 
-                alt="Технический текстиль ПВХ" 
-                className="w-full h-full object-cover"
+                alt="Образцы технического текстиля разных цветов" 
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
             </div>
           </motion.div>
         </div>

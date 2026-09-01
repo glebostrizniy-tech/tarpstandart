@@ -8,7 +8,7 @@ import { openContactFormForMaterial } from "@/lib/catalog-inquiry";
 
 export function Catalog() {
   return (
-    <section id="catalog" className="py-24 bg-card/30">
+    <section id="catalog" className="scroll-mt-28 py-24 bg-card/30">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div

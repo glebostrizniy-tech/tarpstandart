@@ -20,7 +20,7 @@ export default function Home() {
     if (!hash) return;
 
     window.setTimeout(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
   }, []);
 

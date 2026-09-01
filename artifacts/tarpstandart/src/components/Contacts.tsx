@@ -79,7 +79,7 @@ export function Contacts() {
   };
 
   return (
-    <section id="contacts" className="py-24 bg-card/30 relative">
+    <section id="contacts" className="scroll-mt-28 py-24 bg-card/30 relative">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

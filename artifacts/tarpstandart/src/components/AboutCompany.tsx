@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export function AboutCompany() {
   return (
-    <section id="about" className="py-24 bg-card/30 relative overflow-hidden">
+    <section id="about" className="scroll-mt-28 py-24 bg-card/30 relative overflow-hidden">
       <div className="absolute right-0 top-0 w-1/3 h-full bg-primary/5 blur-[100px] pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">

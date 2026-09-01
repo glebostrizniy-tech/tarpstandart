@@ -38,7 +38,7 @@ export function openContactFormForMaterial(materialName: string): void {
     }),
   );
 
-  document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /**

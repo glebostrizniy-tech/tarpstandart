@@ -88,7 +88,7 @@ export function ApplicationAreas() {
   const activeCategory = categories.find(c => c.id === activeTab);
 
   return (
-    <section id="applications" className="py-24 relative">
+    <section id="applications" className="scroll-mt-28 py-24 relative">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
